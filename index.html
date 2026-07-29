@@ -1,121 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Finance Analyzer &mdash; Local E-commerce Finance Pipeline</title>
-<style>
-  :root {
-    --bg: #f8f9fa; --card: #ffffff; --header: #1a1a2e;
-    --text: #212529; --text-secondary: #6c757d; --accent: #4a6cf7;
-    --border: #e9ecef; --radius: 10px;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: var(--bg); color: var(--text); line-height: 1.6;
-  }
-  .wrap { max-width: 780px; margin: 0 auto; padding: 56px 24px 80px; }
-  header { margin-bottom: 40px; }
-  h1 { font-size: 30px; font-weight: 700; margin-bottom: 8px; }
-  .tagline { color: var(--text-secondary); font-size: 16px; }
-  .badge {
-    display: inline-block; background: var(--header); color: #fff;
-    font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px;
-    margin-bottom: 16px; letter-spacing: 0.3px;
-  }
-  section { margin-bottom: 36px; }
-  h2 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
-  p { margin-bottom: 12px; color: var(--text); }
-  ul, ol { padding-left: 22px; margin-bottom: 12px; }
-  li { margin-bottom: 6px; }
-  code {
-    background: #eef0f3; padding: 2px 6px; border-radius: 4px;
-    font-family: 'SF Mono', Consolas, monospace; font-size: 13px;
-  }
-  pre {
-    background: var(--header); color: #f1f1f1; padding: 16px 18px;
-    border-radius: var(--radius); overflow-x: auto; font-size: 13px;
-    font-family: 'SF Mono', Consolas, monospace; margin-bottom: 12px;
-  }
-  .card {
-    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 20px 22px; margin-bottom: 14px;
-  }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
-  .grid .card h3 { font-size: 14px; margin-bottom: 6px; }
-  .grid .card p { font-size: 13px; color: var(--text-secondary); margin-bottom: 0; }
-  .note {
-    background: #fff8e1; border: 1px solid #ffe0a3; color: #7a5c00;
-    padding: 14px 18px; border-radius: var(--radius); font-size: 14px;
-  }
-  footer { color: var(--text-secondary); font-size: 13px; padding-top: 24px; border-top: 1px solid var(--border); }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Opening Finance Dashboard</title>
+  <meta http-equiv="refresh" content="0; url=/dashboard.html">
+  <script>
+    window.location.replace('/dashboard.html' + window.location.search + window.location.hash);
+  </script>
 </head>
 <body>
-<div class="wrap">
-
-  <header>
-    <span class="badge">LOCAL-FIRST &middot; NO CLOUD REQUIRED</span>
-    <h1>Finance Analyzer</h1>
-    <p class="tagline">A local Python pipeline that turns raw e-commerce exports into a Net Profit dashboard, restock plan, and a searchable product-costing database &mdash; all running on your own machine.</p>
-  </header>
-
-  <section>
-    <h2>What it does</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Net Profit Dashboard</h3>
-        <p>Reconciles D2C orders, dropship/reseller invoices, bank statements, and payroll into one accrual P&amp;L, with a separate pure-cash view.</p>
-      </div>
-      <div class="card">
-        <h3>ISKU Pricing Database</h3>
-        <p>A local product-costing database (import price, tax, invisible costing fees, currency, RSP/DSP) with a full add/search/edit/bulk-edit UI &mdash; no spreadsheet needed.</p>
-      </div>
-      <div class="card">
-        <h3>Restock Planning</h3>
-        <p>Turns recent sales velocity and current stock into a funded purchase plan, with brand-mix and sellout-driven strategy views.</p>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Why local-first</h2>
-    <p>Every input file (orders, bank statements, payslips, supplier costs) and every output (the dashboard, the report) stays on your machine. Nothing is uploaded anywhere by default. The dashboard is a single static HTML file you open in a browser, served locally &mdash; there's no server component and no external database.</p>
-  </section>
-
-  <section>
-    <h2>Getting started</h2>
-    <ol>
-      <li>Install dependencies: <code>pip install pandas openpyxl pdfplumber</code></li>
-      <li>Drop your data exports into the project folder (see the scripts' docstrings for the expected file patterns).</li>
-      <li>Run <code>python finance_analyzer.py</code> &mdash; this writes <code>Executive_Financial_Report.md</code> and <code>dashboard.html</code>.</li>
-      <li>Open <code>dashboard.html</code> in a browser (or run <code>Start_Dashboard.bat</code> on Windows, which serves it on <code>localhost</code> and opens it for you).</li>
-    </ol>
-    <pre>pip install pandas openpyxl pdfplumber
-python finance_analyzer.py</pre>
-  </section>
-
-  <section>
-    <h2>Project layout</h2>
-    <ul>
-      <li><code>finance_analyzer.py</code> &mdash; the main pipeline: loads all data sources, computes Net Profit, generates the report and dashboard (including the ISKU Manager tab).</li>
-      <li><code>migrate_isku_database.py</code> &mdash; one-time/re-runnable migration that builds the local product-costing database from a spreadsheet export.</li>
-      <li><code>restock_planner.py</code>, <code>restock_pipeline.py</code>, <code>restock_strategy.py</code> &mdash; restock quantity/budget planning, layered on top of the same cost/sales data.</li>
-      <li><code>Start_Dashboard.bat</code> &mdash; convenience launcher for the generated dashboard on Windows.</li>
-    </ul>
-  </section>
-
-  <div class="note">
-    This repository intentionally contains code only. Real business data &mdash; generated reports, the dashboard output, the product-costing database, and every raw input file &mdash; is excluded via <code>.gitignore</code> and never committed. See <a href="README.md">README.md</a> for the full list.
-  </div>
-
-  <footer>
-    Finance Analyzer &mdash; a local-first e-commerce finance pipeline.
-  </footer>
-
-</div>
+  <p>Opening the <a href="/dashboard.html">Finance Dashboard</a>…</p>
 </body>
 </html>
