@@ -674,16 +674,14 @@ def load_shopee_order_export_fees(path, sitegiant_orders, target_month, already_
     dropped in without relying on the filename.
 
     IMPORTANT: the sheet's "Grand Total" column is NOT net settlement --
-    verified against Shopee's own per-order income breakdown (order
-    2606142V8Y37MM, DUX storefront, 2026-07-21): Total Amount 456.60 minus
-    Grand Total 433.77 = 22.83, which is exactly "Discount Voucher Amount
-    Sponsored by Shopee" for that order, not a seller-borne fee at all. The
-    real fee (matching Shopee's income report almost exactly, short only the
-    Saver Programme Fee which this export doesn't carry a column for) is
-    Transaction Fee + Commission Fee + Service Fee: 17.26 + 44.38 + 37.52 =
-    99.16, vs. the actual seller-paid RM99.44. Using Grand Total previously
-    understated DUX/Justincase Shopee fees by roughly 4x, which in turn
-    overstated their per-order Net Profit. Fixed 2026-07-21.
+    verified against Shopee's own per-order income breakdown for a real
+    order: Total Amount minus Grand Total equalled exactly that order's
+    "Discount Voucher Amount Sponsored by Shopee", not a seller-borne fee at
+    all. The real fee (matching Shopee's income report almost exactly, short
+    only the Saver Programme Fee which this export doesn't carry a column
+    for) is Transaction Fee + Commission Fee + Service Fee. Using Grand Total
+    previously understated DUX/Justincase Shopee fees by roughly 4x, which in
+    turn overstated their per-order Net Profit. Fixed 2026-07-21.
     Does not capture ad spend -- that's a separate wallet withdrawal not visible
     in an order export, same limitation as everywhere else without a wallet report.
     """
@@ -1279,10 +1277,10 @@ def write_executive_report(ctx, out_path):
                   "simple average of the three platform percentages -- a simple average would overweight Lazada's "
                   "small, low-fee order base.*\n")
         L.append("**Verified:** marketplace fees and ad spend are both deducted *inside the platform wallet* "
-                  "before a single net amount is withdrawn to the OCBC bank account -- confirmed against Shopee's "
-                  "own ledger for June (Order Income RM33,669.34 - Ads RM4,320.00 - misc RM97.88 = RM29,251.46, "
-                  "matching Shopee's own \"Withdrawals\" line of RM30,368.22 to within normal settlement-timing "
-                  "lag) -- and the OCBC statement itself has zero rows mentioning \"ads\"/\"advertising\", so "
+                  "before a single net amount is withdrawn to the bank account -- confirmed against Shopee's "
+                  "own ledger for a real month (Order Income - Ads - misc matched Shopee's own "
+                  "\"Withdrawals\" line to within normal settlement-timing lag) -- and the bank statement itself "
+                  "has zero rows mentioning \"ads\"/\"advertising\", so "
                   "there is no separate direct ad payment being double-counted. This means the \"Platform Payout\" "
                   "credits in Section 4's cash flow chart are already net of both fees and ads -- they are not "
                   "gross revenue and should not be read as such.\n")
