@@ -1,0 +1,51 @@
+# This repo is the TOOL (the Python pipeline + dashboard code) only.
+# Every real financial input/output of Frescoone Trading Sdn Bhd is
+# deliberately excluded so none of it ever reaches a public host.
+# See README.md for what's excluded and why before adding anything back.
+
+# Generated reports / dashboards (contain real, live figures baked in at
+# generation time -- dashboard.html embeds a JSON data blob with real
+# Revenue/COGS/bank/payroll numbers, not placeholders)
+dashboard.html
+Executive_Financial_Report.md
+Next_Month_Restock_Proposal.md
+Restock_Dashboard_*.html
+Restock_Purchase_List_*.xlsx
+TopEarner_Restock_*.xlsx
+
+# Real source data (bank statements, payroll, supplier costing, orders)
+*.xlsx
+*.xls
+*.csv
+*.zip
+cost_overrides.json
+isku_database.json
+restock_data.json
+restock_pipeline_data.json
+restock_strategy_data.json
+history/
+dropship-reseller-file/
+income-exported-SiteGiant D2C/
+inventory-forecast-SiteGiant/
+order-exported-SiteGiant D2C/
+past-6months-payroll-history/
+restock-po-files/
+restock-po-files-top-earner/
+
+# Internal ops docs that name the company/brands/founder -- proprietary
+# context, not reusable tool documentation. Re-add manually if you
+# specifically want these public.
+business_rules.md.txt
+MONTHLY_WORKFLOW.md
+
+# Python
+__pycache__/
+*.pyc
+
+# Claude Code's own local session/tooling config (leaks local file paths,
+# not part of the project)
+.claude/
+
+# OS cruft
+.DS_Store
+Thumbs.db
